@@ -91,7 +91,7 @@ export default class LoginScreen extends Component {
   }
 
   componentDidUpdate = () =>{
-    console.log(this.state.questions)
+    console.log(this.state.questions);
     console.log(this.state.score);
   }
 
@@ -139,10 +139,90 @@ export default class LoginScreen extends Component {
         this.state.questions.shift();
       }else{
         console.log("Exit");
-        Actions.ScoreScreen({score: this.state.score});
+        this.insertScore(this.state.score, this.state.categoryID,this.state.difficultyID);
+        Actions.ScoreScreen({
+          score: this.state.score
+        });
       }
     }, 500);
-  }
+  };
+
+  insertScore = (score,categoryID,difficultyID) => {
+    if(this.state.categoryOrDifficulty == 'true'){
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //ADD Score to Category
+            db.transaction(function(tx) {
+                        tx.executeSql(
+                          'INSERT INTO score_category (user_id, score, categoryID) VALUES (?,?,?)',
+                          ['player5', score, categoryID],
+                          (tx, results) => {
+                            console.log('Results', results.rowsAffected);
+                            if (results.rowsAffected > 0) {
+                              console.log(results.insertId);
+                              console.log("Success");
+                            } else {
+                              console.log('Registration Failed');
+                            }
+                          },
+                          (tx, error) => {
+                            console.log(error);
+                          },
+                        );
+                      });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //VIEW Category Score
+              db.transaction(tx => {
+                    tx.executeSql('SELECT * FROM score_category order by user_id ASC', [], (tx, results) => {
+                      console.log(results.rows.length);
+                      for (let i = 0; i < results.rows.length; ++i) {
+                        console.log(results.rows.item(i));
+                      }
+                    },
+                    (tx, error) => {
+                      console.log(error);
+                    },
+                  );
+                  });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    }else{
+      ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      //ADD Score to Difficulty
+            db.transaction(function(tx) {
+                        tx.executeSql(
+                          'INSERT INTO score_difficulty (user_id, score, difficultyID) VALUES (?,?,?)',
+                          ['player5', score, difficultyID],
+                          (tx, results) => {
+                            console.log('Results', results.rowsAffected);
+                            if (results.rowsAffected > 0) {
+                              console.log(results.insertId);
+                              console.log("Success");
+                            } else {
+                              console.log('Registration Failed');
+                            }
+                          },
+                          (tx, error) => {
+                            console.log(error);
+                          },
+                        );
+                      });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        //VIEW Difficulty Score
+              db.transaction(tx => {
+                    tx.executeSql('SELECT * FROM score_difficulty  order by user_id ASC', [], (tx, results) => {
+                      console.log(results.rows.length);
+                      for (let i = 0; i < results.rows.length; ++i) {
+                        console.log(results.rows.item(i));
+                      }
+                    },
+                    (tx, error) => {
+                      console.log(error);
+                    },
+                  );
+                  });
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+      }
+  };
+
 
 randomOption = (number) => {
   switch(number){
@@ -187,7 +267,7 @@ randomOption = (number) => {
           })
           break;
   }
-}
+};
 
   render() {
     return (

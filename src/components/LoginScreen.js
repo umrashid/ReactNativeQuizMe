@@ -95,18 +95,18 @@ export default class LoginScreen extends Component {
       // });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //VIEW USERS
-      db.transaction(tx => {
-            tx.executeSql('SELECT * FROM user order by user_id ASC', [], (tx, results) => {
-              console.log(results.rows.length);
-              for (let i = 0; i < results.rows.length; ++i) {
-                console.log(results.rows.item(i));
-              }
-            },
-            (tx, error) => {
-              console.log(error);
-            },
-          );
-          });
+      // db.transaction(tx => {
+      //       tx.executeSql('SELECT * FROM user order by user_id ASC', [], (tx, results) => {
+      //         console.log(results.rows.length);
+      //         for (let i = 0; i < results.rows.length; ++i) {
+      //           console.log(results.rows.item(i));
+      //         }
+      //       },
+      //       (tx, error) => {
+      //         console.log(error);
+      //       },
+      //     );
+      //     });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // //ADD QUESTIONS TABLE
 //         db.transaction(function(txn) {
@@ -152,8 +152,64 @@ export default class LoginScreen extends Component {
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /View Questions
+      // db.transaction(tx => {
+      //       tx.executeSql('SELECT * FROM question ', [], (tx, results) => {
+      //         console.log(results.rows.length);
+      //         for (let i = 0; i < results.rows.length; ++i) {
+      //           console.log(results.rows.item(i));
+      //         }
+      //       },
+      //       (tx, error) => {
+      //         console.log(error);
+      //       },
+      //     );
+      //     });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Creating Score_category TABLE
+    // db.transaction(function(txn) {
+    //     txn.executeSql(
+    //     "SELECT name FROM sqlite_master WHERE type='table' AND name='score_category'",
+    //       [],
+    //       function(tx, res) {
+    //         console.log('item:', res.rows.length);
+    //         if (res.rows.length == 0) {
+    //           txn.executeSql('DROP TABLE IF EXISTS score_category', []);
+    //           txn.executeSql(
+    //             'CREATE TABLE IF NOT EXISTS score_category(user_id VARCHAR(255) NOT NULL, score int(10) NOT NULL, categoryID int(10) NOT NULL, PRIMARY KEY (user_id, categoryID));',
+    //             []
+    //           );
+    //         }
+    //       },
+    //       function(tx, error){
+    //          console.log("DB Failed");
+    //       }
+    //     );
+    //   });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//Creating score_difficulty TABLE
+    // db.transaction(function(txn) {
+    //     txn.executeSql(
+    //     "SELECT name FROM sqlite_master WHERE type='table' AND name='score_difficulty'",
+    //       [],
+    //       function(tx, res) {
+    //         console.log('item:', res.rows.length);
+    //         if (res.rows.length == 0) {
+    //           txn.executeSql('DROP TABLE IF EXISTS score_difficulty', []);
+    //           txn.executeSql(
+    //             'CREATE TABLE IF NOT EXISTS score_difficulty(user_id VARCHAR(255) NOT NULL, score int(10) NOT NULL, difficultyID int(10) NOT NULL, PRIMARY KEY (user_id, difficultyID));',
+    //             []
+    //           );
+    //         }
+    //       },
+    //       function(tx, error){
+    //          console.log("DB Failed");
+    //       }
+    //     );
+    //   });
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// /View All Tables
       db.transaction(tx => {
-            tx.executeSql('SELECT * FROM question ', [], (tx, results) => {
+            tx.executeSql('SELECT * FROM sqlite_master where type="table" ', [], (tx, results) => {
               console.log(results.rows.length);
               for (let i = 0; i < results.rows.length; ++i) {
                 console.log(results.rows.item(i));
@@ -165,6 +221,7 @@ export default class LoginScreen extends Component {
           );
           });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
   }
 
   handleUsername = (text) => {

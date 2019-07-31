@@ -13,15 +13,17 @@ import {
 import Logo from './Logo';
 import Wallpaper from './Wallpaper';
 import ButtonSubmit from './ButtonSubmit';
+import {SQLite} from 'expo-sqlite';
+var db = SQLite.openDatabase('QuizDatabase.db');
 
 
-export default class CategoryScreen extends Component {
+export default class ScoreScreen extends Component {
   constructor(props){
     super(props);
-    this.state = {
-
+    this.state ={
 
     }
+
   }
   render() {
     return (

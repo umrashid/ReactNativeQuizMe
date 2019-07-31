@@ -18,6 +18,7 @@ export default function App() {
           component={LoginScreen}
           animation='fade'
           hideNavBar={true}
+          initial={true}
 
         />
         <Scene key="MainScreen"
@@ -34,7 +35,6 @@ export default function App() {
           component={DifficultyLevelScreen}
           animation='fade'
           hideNavBar={true}
-          initial={true}
         />
         <Scene key="CategoryScreen"
           component={CategoryScreen}

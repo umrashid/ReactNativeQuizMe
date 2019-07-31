@@ -44,14 +44,20 @@ export default class ButtonSubmit extends Component {
     if (this.state.isLoading) return;
     if(this.state.categoryOrDifficulty == 'true'){
       setTimeout(() => {
-        Actions.GameScreen({categoryID: this.state.categoryID})
+        Actions.GameScreen({
+          categoryID: this.state.categoryID,
+          categoryOrDifficulty: this.state.categoryOrDifficulty
+        })
         this.setState({isLoading: false});
         this.buttonAnimated.setValue(0);
         this.growAnimated.setValue(0);
       }, 1300);
     }else if(this.state.categoryOrDifficulty == 'false'){
       setTimeout(() => {
-        Actions.GameScreen({difficultyID: this.state.difficultyID})
+        Actions.GameScreen({
+          difficultyID: this.state.difficultyID,
+          categoryOrDifficulty: this.state.categoryOrDifficulty
+        })
         this.setState({isLoading: false});
         this.buttonAnimated.setValue(0);
         this.growAnimated.setValue(0);

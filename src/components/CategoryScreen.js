@@ -16,6 +16,12 @@ import ButtonSubmit from './ButtonSubmit';
 
 
 export default class CategoryScreen extends Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      username: this.props.username
+    }
+  }
   render() {
     return (
       <Wallpaper>
@@ -23,22 +29,22 @@ export default class CategoryScreen extends Component {
           <Logo heading="Choose your Category: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Astrology" categoryID = '2' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Astrology" categoryID = '2' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Politics" categoryID = '3' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Politics" categoryID = '3' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Animals" categoryID = '4' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Animals" categoryID = '4' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Georgraphy" categoryID = '5' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Georgraphy" categoryID = '5' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Automobiles" categoryID = '6' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Automobiles" categoryID = '6' categoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
       </Wallpaper>
     );

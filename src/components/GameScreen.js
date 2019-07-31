@@ -32,6 +32,7 @@ export default class LoginScreen extends Component {
     super(props);
     this.state = {
       isLoading: false,
+      username: this.props.username,
       questionText: '',
       option1: '',
       option2: '',
@@ -93,6 +94,7 @@ export default class LoginScreen extends Component {
   componentDidUpdate = () =>{
     console.log(this.state.questions);
     console.log(this.state.score);
+    console.log(this.state.username);
   }
 
    shuffle = (array) => {

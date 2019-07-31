@@ -16,6 +16,12 @@ import ButtonSubmit from './ButtonSubmit';
 
 
 export default class GameTypeScreen extends Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      username: this.props.username
+    }
+  }
   render() {
     return (
       <Wallpaper>
@@ -23,8 +29,8 @@ export default class GameTypeScreen extends Component {
           <Logo heading="Choose the type of the questions: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Categories" moveTo="CategoryScreen" />
-          <ButtonSubmit label="Difficulty Level" moveTo = "DifficultyLevelScreen"/>
+          <ButtonSubmit label="Categories" moveTo="CategoryScreen"  username = {this.state.username} />
+          <ButtonSubmit label="Difficulty Level" moveTo = "DifficultyLevelScreen" username = {this.state.username} />
         </View>
       </Wallpaper>
     );

@@ -16,6 +16,12 @@ import ButtonSubmit from './ButtonSubmit';
 
 
 export default class DifficultyLevelScreen extends Component {
+  constructor(props){
+    super(props)
+    this.state ={
+      username: this.props.username
+    }
+  }
   render() {
     return (
       <Wallpaper>
@@ -23,9 +29,9 @@ export default class DifficultyLevelScreen extends Component {
           <Logo heading="Choose your difficulty level: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Easy" difficultyID = '1' categoryOrDifficulty = 'false' />
-          <ButtonSubmit label="Medium" difficultyID = '2' categoryOrDifficulty = 'false' />
-          <ButtonSubmit label="Hard" difficultyID = '3' categoryOrDifficulty = 'false' />
+          <ButtonSubmit label="Easy" difficultyID = '1' categoryOrDifficulty = 'false' username={this.state.username} />
+          <ButtonSubmit label="Medium" difficultyID = '2' categoryOrDifficulty = 'false' username={this.state.username} />
+          <ButtonSubmit label="Hard" difficultyID = '3' categoryOrDifficulty = 'false' username={this.state.username} />
         </View>
       </Wallpaper>
     );

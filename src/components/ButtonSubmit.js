@@ -46,6 +46,7 @@ export default class ButtonSubmit extends Component {
     if(this.state.categoryOrDifficulty == 'true'){
       setTimeout(() => {
         Actions.GameScreen({
+          username: this.state.username,
           categoryID: this.state.categoryID,
           categoryOrDifficulty: this.state.categoryOrDifficulty
         })
@@ -56,6 +57,7 @@ export default class ButtonSubmit extends Component {
     }else if(this.state.categoryOrDifficulty == 'false'){
       setTimeout(() => {
         Actions.GameScreen({
+          username: this.state.username,
           difficultyID: this.state.difficultyID,
           categoryOrDifficulty: this.state.categoryOrDifficulty
         })
@@ -77,15 +79,15 @@ export default class ButtonSubmit extends Component {
 
         setTimeout(() => {
           if(this.props.moveTo == "MainScreen"){
-            Actions.MainScreen();
+            Actions.MainScreen({username: this.state.username});
           }else if(this.props.moveTo == "CreateUser" ){
             Actions.CreateUser();
           }else if(this.props.moveTo == "GameTypeScreen" ){
-            Actions.GameTypeScreen();
+            Actions.GameTypeScreen({username: this.state.username});
           }else if(this.props.moveTo == "DifficultyLevelScreen" ){
-            Actions.DifficultyLevelScreen();
+            Actions.DifficultyLevelScreen({username: this.state.username});
           }else if(this.props.moveTo == "CategoryScreen" ){
-            Actions.CategoryScreen();
+            Actions.CategoryScreen({username: this.state.username});
           }else {
             Actions.LoginScreen();
           }

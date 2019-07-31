@@ -34,8 +34,8 @@ componentDidUpdate = () => {
           <Logo heading="Menu"/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Play" moveTo="GameTypeScreen" />
-          <ButtonSubmit label="Leaderboards" />
+          <ButtonSubmit label="Play" moveTo="GameTypeScreen" username= {this.state.username}/>
+          <ButtonSubmit label="Leaderboards" username= {this.state.username}/>
         </View>
       </Wallpaper>
     );

@@ -23,12 +23,12 @@ export default class CategoryScreen extends Component {
           <Logo heading="Choose your difficulty level: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Capitals" />
-          <ButtonSubmit label="Astrology" />
-          <ButtonSubmit label="Politics" />
-          <ButtonSubmit label="Animals" />
-          <ButtonSubmit label="Georgraphy" />
-          <ButtonSubmit label="Automobiles" />
+          <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Astrology" categoryID = '2' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Politics" categoryID = '3' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Animals" categoryID = '4' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Georgraphy" categoryID = '5' categoryOrDifficulty = 'true' />
+          <ButtonSubmit label="Automobiles" categoryID = '6' categoryOrDifficulty = 'true' />
         </View>
       </Wallpaper>
     );

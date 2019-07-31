@@ -23,9 +23,9 @@ export default class DifficultyLevelScreen extends Component {
           <Logo heading="Choose your difficulty level: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Easy" />
-          <ButtonSubmit label="Medium" />
-          <ButtonSubmit label="Hard" />
+          <ButtonSubmit label="Easy" difficultyID = '1' categoryOrDifficulty = 'false' />
+          <ButtonSubmit label="Medium" difficultyID = '2' categoryOrDifficulty = 'false' />
+          <ButtonSubmit label="Hard" difficultyID = '3' categoryOrDifficulty = 'false' />
         </View>
       </Wallpaper>
     );

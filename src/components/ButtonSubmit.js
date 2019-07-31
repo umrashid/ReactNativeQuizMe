@@ -29,6 +29,9 @@ export default class ButtonSubmit extends Component {
       isLoading: false,
       username : this.props.username,
       password : this.props.password,
+      categoryID: this.props.categoryID,
+      categoryOrDifficulty: this.props.categoryOrDifficulty,
+      difficultyID: this.props.difficultyID
     };
     this.buttonAnimated = new Animated.Value(0);
     this.growAnimated = new Animated.Value(0);
@@ -39,34 +42,51 @@ export default class ButtonSubmit extends Component {
 
   _onPress() {
     if (this.state.isLoading) return;
+    if(this.state.categoryOrDifficulty == 'true'){
+      setTimeout(() => {
+        Actions.GameScreen({categoryID: this.state.categoryID})
+        this.setState({isLoading: false});
+        this.buttonAnimated.setValue(0);
+        this.growAnimated.setValue(0);
+      }, 1300);
+    }else if(this.state.categoryOrDifficulty == 'false'){
+      setTimeout(() => {
+        Actions.GameScreen({difficultyID: this.state.difficultyID})
+        this.setState({isLoading: false});
+        this.buttonAnimated.setValue(0);
+        this.growAnimated.setValue(0);
+      }, 1300);
 
-    this.setState({isLoading: true});
-    Animated.timing(this.buttonAnimated, {
-      toValue: 1,
-      duration: 200,
-      easing: Easing.linear,
-    }).start();
+    }else{
 
-    console.log(this.state.username);
+        this.setState({isLoading: true});
+        Animated.timing(this.buttonAnimated, {
+          toValue: 1,
+          duration: 200,
+          easing: Easing.linear,
+        }).start();
 
-    setTimeout(() => {
-      if(this.props.moveTo == "MainScreen"){
-        Actions.MainScreen();
-      }else if(this.props.moveTo == "CreateUser" ){
-        Actions.CreateUser();
-      }else if(this.props.moveTo == "GameTypeScreen" ){
-        Actions.GameTypeScreen();
-      }else if(this.props.moveTo == "DifficultyLevelScreen" ){
-        Actions.DifficultyLevelScreen();
-      }else if(this.props.moveTo == "CategoryScreen" ){
-        Actions.CategoryScreen();
-      }else {
-        Actions.LoginScreen();
+        console.log(this.state.username);
+
+        setTimeout(() => {
+          if(this.props.moveTo == "MainScreen"){
+            Actions.MainScreen();
+          }else if(this.props.moveTo == "CreateUser" ){
+            Actions.CreateUser();
+          }else if(this.props.moveTo == "GameTypeScreen" ){
+            Actions.GameTypeScreen();
+          }else if(this.props.moveTo == "DifficultyLevelScreen" ){
+            Actions.DifficultyLevelScreen();
+          }else if(this.props.moveTo == "CategoryScreen" ){
+            Actions.CategoryScreen();
+          }else {
+            Actions.LoginScreen();
+          }
+          this.setState({isLoading: false});
+          this.buttonAnimated.setValue(0);
+          this.growAnimated.setValue(0);
+        }, 1300);
       }
-      this.setState({isLoading: false});
-      this.buttonAnimated.setValue(0);
-      this.growAnimated.setValue(0);
-    }, 1300);
   }
 
   _onGrow() {

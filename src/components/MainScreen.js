@@ -15,6 +15,18 @@ import Wallpaper from './Wallpaper';
 import ButtonSubmit from './ButtonSubmit';
 
 export default class LoginScreen extends Component {
+  constructor(props){
+    super(props);
+    this.state ={
+      username: this.props.username
+    }
+
+    console.log("User ID passed to main Screen: " + this.props.username);
+  }
+
+componentDidUpdate = () => {
+  console.log("User ID passed to main Screen: " + this.state.username);
+}
   render() {
     return (
       <Wallpaper>

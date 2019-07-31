@@ -251,7 +251,9 @@ export default class LoginScreen extends Component {
               this.setState({isLoadingLogin: true});
               console.log(this.state.username + "     " + this.state.password)
               setTimeout(() => {
-                Actions.MainScreen();
+                Actions.MainScreen({
+                  username: this.state.username
+                });
                 this.setState({isLoadingLogin: false});
               }, 2300);
           }else{

@@ -14,28 +14,23 @@ import Logo from './Logo';
 import Wallpaper from './Wallpaper';
 import ButtonSubmit from './ButtonSubmit';
 
-export default class LoginScreen extends Component {
+
+export default class GameTypeScreen extends Component {
   constructor(props){
-    super(props);
+    super(props)
     this.state ={
       username: this.props.username
     }
-
-    console.log("User ID passed to main Screen: " + this.props.username);
   }
-
-componentDidUpdate = () => {
-  console.log("User ID passed to main Screen: " + this.state.username);
-}
   render() {
     return (
       <Wallpaper>
         <View style={styles.container}>
-          <Logo heading="Menu"/>
+          <Logo heading="Choose the type of Leaderboard to View: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Play" moveTo="GameTypeScreen" username= {this.state.username}/>
-          <ButtonSubmit label="Leaderboards" moveTo="GameTypeScreenLeaderboard" username= {this.state.username}/>
+          <ButtonSubmit label="Categories" moveTo="CategoryScreenLeaderboard"  username = {this.state.username} />
+          <ButtonSubmit label="Difficulty Level" moveTo = "DifficultyLevelScreenLeaderboard" username = {this.state.username} />
         </View>
       </Wallpaper>
     );

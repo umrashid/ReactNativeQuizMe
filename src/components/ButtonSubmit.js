@@ -88,6 +88,12 @@ export default class ButtonSubmit extends Component {
             Actions.DifficultyLevelScreen({username: this.state.username});
           }else if(this.props.moveTo == "CategoryScreen" ){
             Actions.CategoryScreen({username: this.state.username});
+          }else if(this.props.moveTo == "GameTypeScreenLeaderboard" ){
+            Actions.GameTypeScreenLeaderboard({username: this.state.username});
+          }else if(this.props.moveTo == "DifficultyLevelScreenLeaderboard" ){
+            Actions.DifficultyLevelScreenLeaderboard({username: this.state.username});
+          }else if(this.props.moveTo == "CategoryScreenLeaderboard" ){
+            Actions.CategoryScreenLeaderboard({username: this.state.username});
           }else {
             Actions.LoginScreen();
           }

@@ -10,6 +10,11 @@ import DifficultyLevelScreen from './src/components/DifficultyLevelScreen';
 import CategoryScreen from './src/components/CategoryScreen';
 import GameScreen from './src/components/GameScreen';
 import ScoreScreen from './src/components/ScoreScreen';
+import LeaderboardScreen from './src/components/LeaderboardScreen';
+import GameTypeScreenLeaderboard from './src/components/GameTypeScreenLeaderboard'
+import CategoryScreenLeaderboard from './src/components/CategoryScreenLeaderboard'
+import DifficultyLevelScreenLeaderboard from './src/components/DifficultyLevelScreenLeaderboard'
+
 
 export default function App() {
   return (
@@ -56,6 +61,31 @@ export default function App() {
           component={ScoreScreen}
           animation='fade'
           hideNavBar={true}
+        />
+
+        <Scene key="LeaderboardScreen"
+          component={LeaderboardScreen}
+          animation='fade'
+          hideNavBar={true}
+
+        />
+        <Scene key="CategoryScreenLeaderboard"
+          component={CategoryScreenLeaderboard}
+          animation='fade'
+          hideNavBar={true}
+
+        />
+        <Scene key="DifficultyLevelScreenLeaderboard"
+          component={DifficultyLevelScreenLeaderboard}
+          animation='fade'
+          hideNavBar={true}
+
+        />
+        <Scene key="GameTypeScreenLeaderboard"
+          component={GameTypeScreenLeaderboard}
+          animation='fade'
+          hideNavBar={true}
+
         />
       </Scene>
     </Router>

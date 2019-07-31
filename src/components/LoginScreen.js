@@ -278,8 +278,7 @@ export default class LoginScreen extends Component {
                 )}
               </TouchableOpacity>
           </View>
-        </View>
-        <View style={styles.button}>
+
             <View style={styles.circle}>
                 <TouchableOpacity
                   style={styles.buttonSubmit}
@@ -300,20 +299,22 @@ export default class LoginScreen extends Component {
 
 const styles = StyleSheet.create({
   logo: {
-    flex: 5,
+    flex: 6,
     alignItems: 'center',
     justifyContent: 'center',
+    //backgroundColor: 'red'
   },
   form: {
     flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
+    //backgroundColor: 'blue'
   },
   button: {
-    flex: 1,
-    top: 10,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    //backgroundColor: 'orange'
   },
   input: {
     backgroundColor: 'rgba(255, 255, 255, 0.4)',
@@ -346,7 +347,7 @@ const styles = StyleSheet.create({
   circle: {
     height: MARGIN,
     width: 350,
-    marginTop: -MARGIN,
+    marginTop: 20,
     borderWidth: 1,
     borderColor: '#F035E0',
     borderRadius: 100,

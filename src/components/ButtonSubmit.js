@@ -42,6 +42,7 @@ export default class ButtonSubmit extends Component {
 
   _onPress() {
     if (this.state.isLoading) return;
+    this.setState({isLoading: true})
     if(this.state.categoryOrDifficulty == 'true'){
       setTimeout(() => {
         Actions.GameScreen({

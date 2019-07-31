@@ -24,10 +24,20 @@ export default class CategoryScreen extends Component {
         </View>
         <View style={styles.buttons}>
           <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' />
+        </View>
+        <View style={styles.buttons}>
           <ButtonSubmit label="Astrology" categoryID = '2' categoryOrDifficulty = 'true' />
+        </View>
+        <View style={styles.buttons}>
           <ButtonSubmit label="Politics" categoryID = '3' categoryOrDifficulty = 'true' />
+        </View>
+        <View style={styles.buttons}>
           <ButtonSubmit label="Animals" categoryID = '4' categoryOrDifficulty = 'true' />
+        </View>
+        <View style={styles.buttons}>
           <ButtonSubmit label="Georgraphy" categoryID = '5' categoryOrDifficulty = 'true' />
+        </View>
+        <View style={styles.buttons}>
           <ButtonSubmit label="Automobiles" categoryID = '6' categoryOrDifficulty = 'true' />
         </View>
       </Wallpaper>
@@ -37,14 +47,14 @@ export default class CategoryScreen extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
+    flex: 9,
     alignItems: 'center',
     justifyContent: 'flex-start',
   },
   buttons: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'space-around',
+    justifyContent: 'center',
   },
   gap: {
     marginTop: 50

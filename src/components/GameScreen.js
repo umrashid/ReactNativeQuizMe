@@ -30,6 +30,7 @@ export default class LoginScreen extends Component {
   constructor(props){
     super(props);
     this.state = {
+      isLoading: false,
       questionText: '',
       option1: '',
       option2: '',
@@ -126,29 +127,33 @@ export default class LoginScreen extends Component {
   };
 
   onPress = (event, title) => {
-    console.log(title);
-    if(title == this.state.answer){
-      console.log("Correct Answer");
-      this.setState({score: this.state.score+5})
-      console.log(this.state.score);
-    }else{
-      console.log("Incorrect Answer");
-      this.setState({score: this.state.score-2})
-      console.log(this.state.score);
-    }
-    if(this.state.questions.length > 0){
-      this.setState({
-        questionText: this.state.questions[0].question,
-        option1: this.state.questions[0].correct,
-        option2: this.state.questions[0].option1,
-        option3: this.state.questions[0].option2,
-        option4: this.state.questions[0].option3,
-        answer: this.state.questions[0].correct,
-      })
-      this.state.questions.shift();
-    }else{
-      console.log("Exit");
-    }
+    this.setState({isLoading: true})
+    setTimeout(() => {
+      this.setState({isLoading: false});
+      console.log(title);
+      if(title == this.state.answer){
+        console.log("Correct Answer");
+        this.setState({score: this.state.score+5})
+        console.log(this.state.score);
+      }else{
+        console.log("Incorrect Answer");
+        this.setState({score: this.state.score-2})
+        console.log(this.state.score);
+      }
+      if(this.state.questions.length > 0){
+        this.setState({
+          questionText: this.state.questions[0].question,
+          option1: this.state.questions[0].correct,
+          option2: this.state.questions[0].option1,
+          option3: this.state.questions[0].option2,
+          option4: this.state.questions[0].option3,
+          answer: this.state.questions[0].correct,
+        })
+        this.state.questions.shift();
+      }else{
+        console.log("Exit");
+      }
+    }, 500);
   }
 
 
@@ -168,7 +173,11 @@ export default class LoginScreen extends Component {
                 style={styles.buttonSubmit}
                 onPress={(event) => this.onPress(event, this.state.option1)}
                 activeOpacity={1}>
+                {this.state.isLoading ? (
+                  <Image source={spinner} style={styles.image} />
+                ) : (
                   <Text style={styles.text}>{this.state.option1}</Text>
+                )}
               </TouchableOpacity>
           </View>
         </View>
@@ -178,7 +187,7 @@ export default class LoginScreen extends Component {
                   style={styles.buttonSubmit}
                   onPress={(event) => this.onPress(event, this.state.option2)}
                   activeOpacity={1}>
-                  {this.state.isLoadingSignUp ? (
+                  {this.state.isLoading ? (
                     <Image source={spinner} style={styles.image} />
                   ) : (
                     <Text style={styles.text}>{this.state.option2}</Text>
@@ -192,7 +201,7 @@ export default class LoginScreen extends Component {
                   style={styles.buttonSubmit}
                   onPress={(event) => this.onPress(event, this.state.option3)}
                   activeOpacity={1}>
-                  {this.state.isLoadingSignUp ? (
+                  {this.state.isLoading ? (
                     <Image source={spinner} style={styles.image} />
                   ) : (
                     <Text style={styles.text}>{this.state.option3}</Text>
@@ -206,7 +215,7 @@ export default class LoginScreen extends Component {
                   style={styles.buttonSubmit}
                   onPress={(event) => this.onPress(event, this.state.option4)}
                   activeOpacity={1}>
-                  {this.state.isLoadingSignUp ? (
+                  {this.state.isLoading ? (
                     <Image source={spinner} style={styles.image} />
                   ) : (
                     <Text style={styles.text}>{this.state.option4}</Text>

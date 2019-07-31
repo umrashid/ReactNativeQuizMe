@@ -58,6 +58,8 @@ export default class ButtonSubmit extends Component {
         Actions.GameTypeScreen();
       }else if(this.props.moveTo == "DifficultyLevelScreen" ){
         Actions.DifficultyLevelScreen();
+      }else if(this.props.moveTo == "CategoryScreen" ){
+        Actions.CategoryScreen();
       }else {
         Actions.LoginScreen();
       }

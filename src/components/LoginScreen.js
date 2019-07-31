@@ -107,7 +107,7 @@ export default class LoginScreen extends Component {
 
   handleUsername = (text) => {
     this.setState({username: text});
-    console.log(text);
+    //console.log(text);
   }
   handlePassword = (text) => {
     this.setState({password: text});

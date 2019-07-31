@@ -11,11 +11,8 @@ import {
   View,
 } from 'react-native';
 import Logo from './Logo';
-import Form from './Form';
 import Wallpaper from './Wallpaper';
 import ButtonSubmit from './ButtonSubmit';
-import SignupSection from './SignupSection';
-import SignUp from './SignUp';
 
 export default class LoginScreen extends Component {
   render() {

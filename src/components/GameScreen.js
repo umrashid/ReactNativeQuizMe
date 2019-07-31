@@ -2,11 +2,9 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import PropTypes from 'prop-types';
 import Logo from './Logo';
-import Form from './Form';
 import Wallpaper from './Wallpaper';
 import ButtonSubmit from './ButtonSubmit';
-import SignupSection from './SignupSection';
-import CreateUserForm from './CreateUserForm';
+
 
 export default function App() {
   return (
@@ -18,7 +16,7 @@ export default function App() {
 
       </View>
       <View style={styles.button}>
-        
+
       </View>
     </Wallpaper>
   );

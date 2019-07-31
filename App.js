@@ -4,8 +4,6 @@ import PropTypes from 'prop-types';
 import { Router, Scene, Actions, ActionConst } from 'react-native-router-flux';
 import LoginScreen from './src/components/LoginScreen';
 import SignUpScreen from './src/components/SignUpScreen';
-import SecondScreen from './src/components/SecondScreen';
-import CreateUser from './src/components/CreateUser';
 import MainScreen from './src/components/MainScreen';
 import GameTypeScreen from './src/components/GameTypeScreen';
 import DifficultyLevelScreen from './src/components/DifficultyLevelScreen';
@@ -19,16 +17,6 @@ export default function App() {
           animation='fade'
           hideNavBar={true}
           initial={true}
-        />
-        <Scene key="secondScreen"
-          component={SecondScreen}
-          animation='fade'
-          hideNavBar={true}
-        />
-        <Scene key="CreateUser"
-          component={CreateUser}
-          animation='fade'
-          hideNavBar={true}
         />
         <Scene key="MainScreen"
           component={MainScreen}

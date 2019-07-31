@@ -42,6 +42,7 @@ export default class LoginScreen extends Component {
       difficultyID: this.props.difficultyID,
       questions: '',
       score: 0,
+      progress: 0,
       categoryOrDifficulty: this.props.categoryOrDifficulty,
     }
     console.log(this.state.categoryID)
@@ -123,10 +124,13 @@ export default class LoginScreen extends Component {
       if(title == this.state.answer){
         console.log("Correct Answer");
         this.setState({score: this.state.score+10})
+        this.setState({progress: this.state.score/50})
         console.log(this.state.score);
+
       }else{
         console.log("Incorrect Answer");
         this.setState({score: this.state.score-4})
+        this.setState({progress: this.state.score/50})
         console.log(this.state.score);
       }
       if(this.state.questions.length > 0){
@@ -251,7 +255,14 @@ randomOption = (number) => {
             </View>
         </View>
         <View>
-          <Progress.Bar progress={0.3} width={200} />
+          <Progress.Bar
+          progress={this.state.progress}
+          width={DEVICE_WIDTH}
+          animated = {true}
+          color= "red"
+          unfilledColor = "white"
+
+          />
         </View>
       </Wallpaper>
     );

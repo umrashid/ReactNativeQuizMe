@@ -237,7 +237,7 @@ export default class LoginScreen extends Component {
     return (
       <Wallpaper>
         <View style={styles.logo}>
-          <Logo heading="Please Sign In"/>
+          <Logo heading="Please Sign In" />
         </View>
         <View style={styles.form}>
           <View style={styles.inputWrapper}>

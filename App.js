@@ -9,6 +9,7 @@ import GameTypeScreen from './src/components/GameTypeScreen';
 import DifficultyLevelScreen from './src/components/DifficultyLevelScreen';
 import CategoryScreen from './src/components/CategoryScreen';
 import GameScreen from './src/components/GameScreen';
+import ScoreScreen from './src/components/ScoreScreen';
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
           component={LoginScreen}
           animation='fade'
           hideNavBar={true}
+          initial={true}
         />
         <Scene key="MainScreen"
           component={MainScreen}
@@ -33,7 +35,6 @@ export default function App() {
           component={DifficultyLevelScreen}
           animation='fade'
           hideNavBar={true}
-          initial={true}
         />
         <Scene key="CategoryScreen"
           component={CategoryScreen}
@@ -50,6 +51,11 @@ export default function App() {
           animation='fade'
           hideNavBar={true}
 
+        />
+        <Scene key="ScoreScreen"
+          component={ScoreScreen}
+          animation='fade'
+          hideNavBar={true}
         />
       </Scene>
     </Router>

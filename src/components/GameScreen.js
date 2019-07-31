@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import Logo from './Logo';
 //import Form from './Form';
 import Wallpaper from './Wallpaper';
-import ButtonSubmit from './ButtonSubmit';
+// import ButtonSubmit from './ButtonSubmit';
+import * as Progress from 'react-native-progress';
 import Dimensions from 'Dimensions';
 import {SQLite} from 'expo-sqlite';
 import {Actions, ActionConst} from 'react-native-router-flux';
@@ -51,14 +52,8 @@ export default class LoginScreen extends Component {
               tx.executeSql('SELECT * FROM question where categoryID = ? ', [this.state.categoryID], (tx, results) => {
                 console.log(results.rows.length);
                 this.setState({questions: this.shuffle(results.rows._array).slice(0,5)})
-                this.setState({
-                  questionText: this.state.questions[0].question,
-                  option1: this.state.questions[0].correct,
-                  option2: this.state.questions[0].option1,
-                  option3: this.state.questions[0].option2,
-                  option4: this.state.questions[0].option3,
-                  answer: this.state.questions[0].correct,
-                })
+                var random = Math.floor(Math.random() * (3 - 0)) + 0;
+                this.randomOption(random)
                 this.state.questions.shift();
                 //console.log(this.state.questions);
                 // for (let i = 0; i < results.rows.length; ++i) {
@@ -76,14 +71,8 @@ export default class LoginScreen extends Component {
             tx.executeSql('SELECT * FROM question where difficultyID = ? ', [this.state.difficultyID], (tx, results) => {
               console.log(results.rows.length);
               this.setState({questions: this.shuffle(results.rows._array).slice(0,5)})
-              this.setState({
-                questionText: this.state.questions[0].question,
-                option1: this.state.questions[0].correct,
-                option2: this.state.questions[0].option1,
-                option3: this.state.questions[0].option2,
-                option4: this.state.questions[0].option3,
-                answer: this.state.questions[0].correct,
-              })
+              var random = Math.floor(Math.random() * (3 - 0)) + 0;
+              this.randomOption(random)
               this.state.questions.shift();
               //console.log(this.state.questions);
               // for (let i = 0; i < results.rows.length; ++i) {
@@ -133,30 +122,68 @@ export default class LoginScreen extends Component {
       console.log(title);
       if(title == this.state.answer){
         console.log("Correct Answer");
-        this.setState({score: this.state.score+5})
+        this.setState({score: this.state.score+10})
         console.log(this.state.score);
       }else{
         console.log("Incorrect Answer");
-        this.setState({score: this.state.score-2})
+        this.setState({score: this.state.score-4})
         console.log(this.state.score);
       }
       if(this.state.questions.length > 0){
-        this.setState({
-          questionText: this.state.questions[0].question,
-          option1: this.state.questions[0].correct,
-          option2: this.state.questions[0].option1,
-          option3: this.state.questions[0].option2,
-          option4: this.state.questions[0].option3,
-          answer: this.state.questions[0].correct,
-        })
+        var random = Math.floor(Math.random() * (3 - 0)) + 0;
+        this.randomOption(random);
         this.state.questions.shift();
       }else{
         console.log("Exit");
+        Actions.ScoreScreen({score: this.state.score});
       }
     }, 500);
   }
 
-
+randomOption = (number) => {
+  switch(number){
+    case 0:
+          this.setState({
+            questionText: this.state.questions[0].question,
+            option1: this.state.questions[0].correct,
+            option2: this.state.questions[0].option3,
+            option3: this.state.questions[0].option2,
+            option4: this.state.questions[0].option1,
+            answer: this.state.questions[0].correct,
+          })
+          break;
+    case 1:
+          this.setState({
+            questionText: this.state.questions[0].question,
+            option1: this.state.questions[0].option2,
+            option2: this.state.questions[0].correct,
+            option3: this.state.questions[0].option1,
+            option4: this.state.questions[0].option3,
+            answer: this.state.questions[0].correct,
+          })
+          break;
+    case 2:
+          this.setState({
+            questionText: this.state.questions[0].question,
+            option1: this.state.questions[0].option2,
+            option2: this.state.questions[0].option1,
+            option3: this.state.questions[0].correct,
+            option4: this.state.questions[0].option3,
+            answer: this.state.questions[0].correct,
+          })
+          break;
+    case 2:
+          this.setState({
+            questionText: this.state.questions[0].question,
+            option1: this.state.questions[0].option1,
+            option2: this.state.questions[0].option2,
+            option3: this.state.questions[0].option3,
+            option4: this.state.questions[0].correct,
+            answer: this.state.questions[0].correct,
+          })
+          break;
+  }
+}
 
   render() {
     return (
@@ -222,6 +249,9 @@ export default class LoginScreen extends Component {
                   )}
                 </TouchableOpacity>
             </View>
+        </View>
+        <View>
+          <Progress.Bar progress={0.3} width={200} />
         </View>
       </Wallpaper>
     );

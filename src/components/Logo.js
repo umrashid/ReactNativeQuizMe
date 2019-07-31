@@ -6,14 +6,15 @@ import {StyleSheet, View, Text, Image} from 'react-native';
 import logoImg from '../images/quizmelogo.png';
 
 export default class Logo extends Component {
-render() {
-return (
-  <View style={styles.container}>
-    <Image source={logoImg} style={styles.image} />
-    <Text style={styles.text}>{this.props.heading}</Text>
-  </View>
-);
-}
+  
+  render() {
+  return (
+    <View style={styles.container}>
+      <Image source={logoImg} style={styles.image} />
+      <Text style={styles.text}>{this.props.heading}</Text>
+    </View>
+  );
+  }
 }
 
 const styles = StyleSheet.create({
@@ -31,5 +32,7 @@ color: 'white',
 fontWeight: 'bold',
 backgroundColor: 'transparent',
 marginTop: 20,
+fontSize: 30,
+
 },
 });

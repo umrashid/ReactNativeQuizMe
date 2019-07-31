@@ -20,7 +20,7 @@ export default class CategoryScreen extends Component {
     return (
       <Wallpaper>
         <View style={styles.container}>
-          <Logo heading="Choose your difficulty level: "/>
+          <Logo heading="Choose your Category: "/>
         </View>
         <View style={styles.buttons}>
           <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' />

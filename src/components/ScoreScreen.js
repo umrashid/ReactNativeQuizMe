@@ -35,8 +35,8 @@ export default class ScoreScreen extends Component {
           <Text style={styles.textBig}> {this.props.score} Points</Text>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Back To Main Menu" moveTo="MainScreen" />
-          <ButtonSubmit label="Back To Game Selection" moveTo="GameTypeScreen" />
+          <ButtonSubmit label="Back To Main Menu" moveTo="MainScreen" username={this.state.username} />
+          <ButtonSubmit label="Back To Game Selection" moveTo="GameTypeScreen" username={this.state.username} />
         </View>
       </Wallpaper>
     );

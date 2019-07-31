@@ -141,7 +141,7 @@ export default class LoginScreen extends Component {
         this.state.questions.shift();
       }else{
         console.log("Exit");
-        this.insertScore(this.state.score, this.state.categoryID,this.state.difficultyID);
+        this.insertScore(this.state.username, this.state.score, this.state.categoryID,this.state.difficultyID);
         Actions.ScoreScreen({
           score: this.state.score
         });
@@ -149,14 +149,14 @@ export default class LoginScreen extends Component {
     }, 500);
   };
 
-  insertScore = (score,categoryID,difficultyID) => {
+  insertScore = (username,score,categoryID,difficultyID) => {
     if(this.state.categoryOrDifficulty == 'true'){
       ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
       //ADD Score to Category
             db.transaction(function(tx) {
                         tx.executeSql(
                           'INSERT INTO score_category (user_id, score, categoryID) VALUES (?,?,?)',
-                          ['player5', score, categoryID],
+                          [username, score, categoryID],
                           (tx, results) => {
                             console.log('Results', results.rowsAffected);
                             if (results.rowsAffected > 0) {
@@ -192,7 +192,7 @@ export default class LoginScreen extends Component {
             db.transaction(function(tx) {
                         tx.executeSql(
                           'INSERT INTO score_difficulty (user_id, score, difficultyID) VALUES (?,?,?)',
-                          ['player5', score, difficultyID],
+                          [username, score, difficultyID],
                           (tx, results) => {
                             console.log('Results', results.rowsAffected);
                             if (results.rowsAffected > 0) {
@@ -278,7 +278,7 @@ randomOption = (number) => {
           <Logo heading="Game"/>
         </View>
         <View style={styles.question}>
-          <Text> {this.state.questionText} </Text>
+          <Text style={styles.questionShow}> {this.state.questionText} </Text>
         </View>
         <View style={styles.button}>
           <View style={styles.circle}>
@@ -353,17 +353,15 @@ randomOption = (number) => {
 
 const styles = StyleSheet.create({
   logo: {
-    flex: 3,
+    flex: 4,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
   },
   question: {
-    flex: 1,
+    flex: 2,
     alignItems: 'center',
     justifyContent: 'center',
-    color: 'white',
     backgroundColor: 'transparent',
-    fontSize: 30
   },
   button: {
     flex: 1,
@@ -420,5 +418,10 @@ const styles = StyleSheet.create({
   },
   marginbutton: {
     top: 10
+  },
+  questionShow: {
+    color: 'white',
+    fontSize: 26,
+    textAlign: 'center'
   }
 });

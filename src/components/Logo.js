@@ -6,7 +6,7 @@ import {StyleSheet, View, Text, Image} from 'react-native';
 import logoImg from '../images/quizmelogo.png';
 
 export default class Logo extends Component {
-  
+
   render() {
   return (
     <View style={styles.container}>
@@ -32,7 +32,7 @@ color: 'white',
 fontWeight: 'bold',
 backgroundColor: 'transparent',
 marginTop: 20,
-fontSize: 30,
+fontSize: 24,
 
 },
 });

@@ -207,74 +207,127 @@ export default class LoginScreen extends Component {
     //     );
     //   });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-//CREATE VIEWS
-// db.transaction(function(txn) {
-//     txn.executeSql(
-//     "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_category_total'",
-//       [],
-//       function(tx, res) {
-//         console.log('item:', res.rows.length);
-//         if (res.rows.length == 0) {
-//           txn.executeSql('DROP VIEW IF EXISTS leaderboard_category_total', []);
-//           txn.executeSql(
-//             'CREATE VIEW leaderboard_category_total as select userID, sum(score) as totalpoints, categoryID from scorecategory group by userID, categoryID order by categoryID ASC, totalpoints DESC, userID;',
-//             []
-//           );
-//         }
-//       },
-//       function(tx, error){
-//          console.log("DB Failed");
-//       }
-//     );
-//   });
-//   db.transaction(function(txn) {
-//       txn.executeSql(
-//       "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_difficulty_total'",
-//         [],
-//         function(tx, res) {
-//           console.log('item:', res.rows.length);
-//           if (res.rows.length == 0) {
-//             txn.executeSql('DROP VIEW IF EXISTS leaderboard_difficulty_total', []);
-//             txn.executeSql(
-//               'CREATE VIEW leaderboard_difficulty_total as select userID, sum(score) as totalpoints, difficultyID from scoredifficulty group by userID, difficultyID order by difficultyID ASC, totalpoints DESC, userID;',
-//               []
-//             );
-//           }
-//         },
-//         function(tx, error){
-//            console.log("DB Failed");
-//         }
-//       );
-//     });
+//Drop VIEWS
 
+// CREATE VIEWS
+db.transaction(function(txn) {
+    txn.executeSql(
+    "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_category_total'",
+      [],
+      function(tx, res) {
+        console.log('item:', res.rows.length);
+        if (res.rows.length == 0) {
+          txn.executeSql('DROP VIEW IF EXISTS leaderboard_category_total', []);
+          txn.executeSql(
+            'CREATE VIEW leaderboard_category_total as select user_id, sum(score) as totalpoints, categoryID from score_category group by user_id, categoryID order by categoryID ASC, totalpoints DESC, user_id;',
+            []
+          );
+        }
+      },
+      function(tx, error){
+         console.log("DB Failed");
+      }
+    );
+  });
+  db.transaction(function(txn) {
+      txn.executeSql(
+      "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_difficulty_total'",
+        [],
+        function(tx, res) {
+          console.log('item:', res.rows.length);
+          if (res.rows.length == 0) {
+            txn.executeSql('DROP VIEW IF EXISTS leaderboard_difficulty_total', []);
+            txn.executeSql(
+              'CREATE VIEW leaderboard_difficulty_total as select user_id, sum(score) as totalpoints, difficultyID from score_difficulty group by user_id, difficultyID order by difficultyID ASC, totalpoints DESC, user_id;',
+              []
+            );
+          }
+        },
+        function(tx, error){
+           console.log("DB Failed");
+        }
+      );
+    });
+    db.transaction(function(txn) {
+        txn.executeSql(
+        "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_category_average'",
+          [],
+          function(tx, res) {
+            console.log('item:', res.rows.length);
+            if (res.rows.length == 0) {
+              txn.executeSql('DROP VIEW IF EXISTS leaderboard_category_average', []);
+              txn.executeSql(
+                'CREATE VIEW leaderboard_category_average as select user_id, avg(score) as totalpoints, categoryID from score_category group by user_id, categoryID order by categoryID ASC, totalpoints DESC, user_id;',
+                []
+              );
+            }
+          },
+          function(tx, error){
+             console.log("DB Failed");
+          }
+        );
+      });
+      db.transaction(function(txn) {
+          txn.executeSql(
+          "SELECT name FROM sqlite_master WHERE type='view' AND name='leaderboard_difficulty_average'",
+            [],
+            function(tx, res) {
+              console.log('item:', res.rows.length);
+              if (res.rows.length == 0) {
+                txn.executeSql('DROP VIEW IF EXISTS leaderboard_difficulty_average', []);
+                txn.executeSql(
+                  'CREATE VIEW leaderboard_difficulty_average as select user_id, avg(score) as totalpoints, difficultyID from score_difficulty group by user_id, difficultyID order by difficultyID ASC, totalpoints DESC, user_id;',
+                  []
+                );
+              }
+            },
+            function(tx, error){
+               console.log("DB Failed");
+            }
+          );
+        });
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//VIEW VIEWS
+        db.transaction(tx => {
+              tx.executeSql('SELECT * FROM leaderboard_category_total order by user_id ASC', [], (tx, results) => {
+                console.log(results.rows.length);
+                for (let i = 0; i < results.rows.length; ++i) {
+                  console.log(results.rows.item(i));
+                }
+              },
+              (tx, error) => {
+                console.log(error);
+              },
+            );
+            });
 ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /View All Tables
-      db.transaction(tx => {
-            tx.executeSql('SELECT * FROM sqlite_master where type="table" ', [], (tx, results) => {
-              console.log(results.rows.length);
-              for (let i = 0; i < results.rows.length; ++i) {
-                console.log(results.rows.item(i));
-              }
-            },
-            (tx, error) => {
-              console.log(error);
-            },
-          );
-          });
+      // db.transaction(tx => {
+      //       tx.executeSql('SELECT * FROM sqlite_master where type="table" ', [], (tx, results) => {
+      //         console.log(results.rows.length);
+      //         for (let i = 0; i < results.rows.length; ++i) {
+      //           console.log(results.rows.item(i));
+      //         }
+      //       },
+      //       (tx, error) => {
+      //         console.log(error);
+      //       },
+      //     );
+      //     });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 // /View All Views
-      db.transaction(tx => {
-            tx.executeSql('SELECT * FROM sqlite_master where type="view" ', [], (tx, results) => {
-              console.log(results.rows.length);
-              for (let i = 0; i < results.rows.length; ++i) {
-                console.log(results.rows.item(i));
-              }
-            },
-            (tx, error) => {
-              console.log(error);
-            },
-          );
-          });
+      // db.transaction(tx => {
+      //       tx.executeSql('SELECT * FROM sqlite_master where type="view" ', [], (tx, results) => {
+      //         console.log(results.rows.length);
+      //         for (let i = 0; i < results.rows.length; ++i) {
+      //           console.log(results.rows.item(i));
+      //         }
+      //       },
+      //       (tx, error) => {
+      //         console.log(error);
+      //       },
+      //     );
+      //     });
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
   }

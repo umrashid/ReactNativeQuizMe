@@ -31,7 +31,8 @@ export default class ButtonSubmit extends Component {
       password : this.props.password,
       categoryID: this.props.categoryID,
       categoryOrDifficulty: this.props.categoryOrDifficulty,
-      difficultyID: this.props.difficultyID
+      difficultyID: this.props.difficultyID,
+      LeaderboardcategoryOrDifficulty: this.props.LeaderboardcategoryOrDifficulty
     };
     this.buttonAnimated = new Animated.Value(0);
     this.growAnimated = new Animated.Value(0);
@@ -94,6 +95,20 @@ export default class ButtonSubmit extends Component {
             Actions.DifficultyLevelScreenLeaderboard({username: this.state.username});
           }else if(this.props.moveTo == "CategoryScreenLeaderboard" ){
             Actions.CategoryScreenLeaderboard({username: this.state.username});
+          }else if(this.props.moveTo == "LeaderboardScreen" ){
+              if(this.state.LeaderboardcategoryOrDifficulty == 'true'){
+                Actions.LeaderboardScreen({
+                  username: this.state.username,
+                  categoryID: this.state.categoryID,
+                  LeaderboardcategoryOrDifficulty: this.state.LeaderboardcategoryOrDifficulty
+                });
+              }else{
+                Actions.LeaderboardScreen({
+                  username: this.state.username,
+                  difficultyID: this.state.difficultyID,
+                  LeaderboardcategoryOrDifficulty: this.state.LeaderboardcategoryOrDifficulty
+                });
+              }
           }else {
             Actions.LoginScreen();
           }

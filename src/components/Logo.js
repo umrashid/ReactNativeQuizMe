@@ -33,6 +33,7 @@ fontWeight: 'bold',
 backgroundColor: 'transparent',
 marginTop: 20,
 fontSize: 24,
+textAlign: 'center'
 
 },
 });

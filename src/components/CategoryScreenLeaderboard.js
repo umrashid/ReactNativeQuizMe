@@ -22,29 +22,33 @@ export default class CategoryScreen extends Component {
       username: this.props.username
     }
   }
+
+  ComponentDidUpdate = () =>{
+    console.log(this.props)
+  }
   render() {
     return (
       <Wallpaper>
         <View style={styles.container}>
-          <Logo heading="Choose your Category for Leaderboard: "/>
+          <Logo heading="View score based on category: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Capitals" categoryID = '1' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Capitals" categoryID = '1' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Astrology" categoryID = '2' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Astrology" categoryID = '2' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Politics" categoryID = '3' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Politics" categoryID = '3' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Animals" categoryID = '4' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Animals" categoryID = '4' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Georgraphy" categoryID = '5' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Georgraphy" categoryID = '5' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Automobiles" categoryID = '6' categoryOrDifficulty = 'true' username = {this.state.username} />
+          <ButtonSubmit label="Automobiles" categoryID = '6' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'true' username = {this.state.username} />
         </View>
       </Wallpaper>
     );

@@ -33,13 +33,148 @@ export default class LoginScreen extends Component {
       username: this.props.username,
       categoryID: this.props.categoryID,
       difficultyID: this.props.difficultyID,
+      LeaderboardcategoryOrDifficulty: this.props.LeaderboardcategoryOrDifficulty,
       totalPoints: '',
       rank: '',
+      averagePoints: '',
     }
+    //////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+    // /Get totalPoints and Rank
+    if(this.state.LeaderboardcategoryOrDifficulty == 'true'){
+      //Total Points Category
+        db.transaction(tx => {
+              tx.executeSql('SELECT * FROM leaderboard_category_total where user_id = ? and categoryID = ? ', [this.state.username,this.state.categoryID], (tx, results) => {
+                console.log(results.rows.length);
+                if(results.rows.length == 0){
+                  this.setState({totalPoints: 'N/A'})
+                }else{
+                  console.log("Total Points: " + results.rows._array[0].totalpoints);
+                  this.setState({totalPoints: results.rows._array[0].totalpoints})
+              }
+                //console.log(this.state.questions);
+                // for (let i = 0; i < results.rows.length; ++i) {
+                //   console.log(results.rows.item(i));
+                // }
 
+              },
+              (tx, error) => {
+                console.log(error);
+              },
+            );
+            });
+          // Rank Category
+          db.transaction(tx => {
+                tx.executeSql('SELECT * FROM leaderboard_category_total where categoryID = ? order by totalpoints', [this.state.categoryID], (tx, results) => {
+                  console.log(results.rows.length);
+                  if(results.rows.length == 0){
+                    this.setState({rank: 'N/A'})
+                  }else{
+                    for (let i = 0; i < results.rows.length; ++i) {
+                      console.log(results.rows._array[i].user_id)
+                      if(this.state.username == results.rows._array[i].user_id){
+                          this.setState({rank: i+1})
+                      }else{
+                        this.setState({rank: 'N/A'})
+                      }
+                     }
+                }
+
+
+                },
+                (tx, error) => {
+                  console.log(error);
+                },
+              );
+              });
+          //Average Score Category
+          db.transaction(tx => {
+                tx.executeSql('SELECT * FROM leaderboard_category_average where user_id = ? and categoryID = ? ', [this.state.username,this.state.categoryID], (tx, results) => {
+                  console.log(results.rows.length);
+                  if(results.rows.length == 0){
+                    this.setState({averagePoints: 'N/A'})
+                  }else{
+                    console.log("Total Points: " + results.rows._array[0].totalpoints);
+                    this.setState({averagePoints: results.rows._array[0].totalpoints})
+                }
+                  //console.log(this.state.questions);
+                  // for (let i = 0; i < results.rows.length; ++i) {
+                  //   console.log(results.rows.item(i));
+                  // }
+
+                },
+                (tx, error) => {
+                  console.log(error);
+                },
+              );
+              });
+
+    }else{
+      //Total Points Difficulty
+      db.transaction(tx => {
+            tx.executeSql('SELECT * FROM leaderboard_difficulty_total where user_id = ? and difficultyID = ? ', [this.state.username, this.state.difficultyID], (tx, results) => {
+              console.log(results.rows.length);
+              if(results.rows.length == 0){
+                this.setState({totalPoints: 'N/A'})
+              }else{
+                console.log("Total Points: " + results.rows._array[0].totalpoints);
+                this.setState({totalPoints: results.rows._array[0].totalpoints})
+            }
+
+            },
+            (tx, error) => {
+              console.log(error);
+            },
+          );
+          });
+      //Rank Difficulty
+          db.transaction(tx => {
+                tx.executeSql('SELECT * FROM leaderboard_difficulty_total where difficultyID = ? order by totalpoints', [this.state.difficultyID], (tx, results) => {
+                  console.log(results.rows.length);
+                  if(results.rows.length == 0){
+                    this.setState({rank: 'N/A'})
+                  }else{
+                    for (let i = 0; i < results.rows.length; ++i) {
+                      console.log(results.rows._array[i].user_id)
+                      if(this.state.username == results.rows._array[i].user_id){
+                          this.setState({rank: i+1})
+                      }else{
+                        this.setState({rank: 'N/A'})
+                      }
+                     }
+                }
+
+
+                },
+                (tx, error) => {
+                  console.log(error);
+                },
+              );
+              });
+        //Average Score Difficulty
+        db.transaction(tx => {
+              tx.executeSql('SELECT * FROM leaderboard_difficulty_average where user_id = ? and difficultyID = ? ', [this.state.username, this.state.difficultyID], (tx, results) => {
+                console.log(results.rows.length);
+                if(results.rows.length == 0){
+                  this.setState({averagePoints: 'N/A'})
+                }else{
+                  console.log("Total Points: " + results.rows._array[0].totalpoints);
+                  this.setState({averagePoints: results.rows._array[0].totalpoints})
+              }
+
+              },
+              (tx, error) => {
+                console.log(error);
+              },
+            );
+            });
+    }
   }
 
   render() {
+    console.log("Username is " + this.props.username)
+    console.log("categoryID is " + this.props.categoryID)
+    console.log("difficultyID is " + this.props.difficultyID)
+    console.log("LeaderboardcategoryOrDifficulty is " + this.props.LeaderboardcategoryOrDifficulty)
     return (
       <Wallpaper>
         <View style={styles.logo}>
@@ -49,20 +184,10 @@ export default class LoginScreen extends Component {
           <Text style={styles.display}> Username: {this.state.username}</Text>
           <Text style={styles.display}> Rank: {this.state.rank}</Text>
           <Text style={styles.display}> Total Points: {this.state.totalPoints}</Text>
+          <Text style={styles.display}> Total Points: {this.state.averagePoints}</Text>
         </View>
         <View style={styles.button}>
-          <View style={styles.circle}>
-              <TouchableOpacity
-                style={styles.buttonSubmit}
-                onPress={this.login}
-                activeOpacity={1}>
-                {this.state.isLoadingLogin ? (
-                  <Image source={spinner} style={styles.image} />
-                ) : (
-                  <Text style={styles.text}>Login</Text>
-                )}
-              </TouchableOpacity>
-          </View>
+          <ButtonSubmit label="Back To Main Menu" moveTo="MainScreen" username={this.state.username} />
         </View>
       </Wallpaper>
     );
@@ -86,6 +211,7 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     justifyContent: 'flex-start',
+    top: 200
     //backgroundColor: 'orange'
   },
   input: {

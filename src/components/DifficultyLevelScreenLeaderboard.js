@@ -26,12 +26,12 @@ export default class DifficultyLevelScreen extends Component {
     return (
       <Wallpaper>
         <View style={styles.container}>
-          <Logo heading="Choose your difficulty for Leaderboards: "/>
+          <Logo heading="View scored based on difficulty: "/>
         </View>
         <View style={styles.buttons}>
-          <ButtonSubmit label="Easy" difficultyID = '1' categoryOrDifficulty = 'false' username={this.state.username} />
-          <ButtonSubmit label="Medium" difficultyID = '2' categoryOrDifficulty = 'false' username={this.state.username} />
-          <ButtonSubmit label="Hard" difficultyID = '3' categoryOrDifficulty = 'false' username={this.state.username} />
+          <ButtonSubmit label="Easy" difficultyID = '1' moveTo = "LeaderboardScreen"  LeaderboardcategoryOrDifficulty = 'false' username={this.state.username} />
+          <ButtonSubmit label="Medium" difficultyID = '2' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'false' username={this.state.username} />
+          <ButtonSubmit label="Hard" difficultyID = '3' moveTo = "LeaderboardScreen" LeaderboardcategoryOrDifficulty = 'false' username={this.state.username} />
         </View>
       </Wallpaper>
     );

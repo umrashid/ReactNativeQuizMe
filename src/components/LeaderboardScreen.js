@@ -206,13 +206,13 @@ const styles = StyleSheet.create({
   displayText: {
     flex: 1,
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
     //backgroundColor: 'blue'
   },
   button: {
-    flex: 3,
+    flex: 2,
     alignItems: 'center',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     top: 100
     //backgroundColor: 'orange'
   },
@@ -270,5 +270,6 @@ const styles = StyleSheet.create({
       color: 'white',
       backgroundColor: 'transparent',
       fontSize: 20
+
   }
 });

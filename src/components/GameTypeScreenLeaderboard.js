@@ -26,7 +26,7 @@ export default class GameTypeScreen extends Component {
     return (
       <Wallpaper>
         <View style={styles.container}>
-          <Logo heading="Choose the type of Leaderboard to View: "/>
+          <Logo heading="View you score based on: "/>
         </View>
         <View style={styles.buttons}>
           <ButtonSubmit label="Categories" moveTo="CategoryScreenLeaderboard"  username = {this.state.username} />

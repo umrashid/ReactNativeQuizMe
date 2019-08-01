@@ -129,16 +129,17 @@ export default class LoginScreen extends Component {
       //Rank Difficulty
           db.transaction(tx => {
                 tx.executeSql('SELECT * FROM leaderboard_difficulty_total where difficultyID = ? order by totalpoints', [this.state.difficultyID], (tx, results) => {
-                  console.log(results.rows.length);
+                  console.log(results.rows._array);
                   if(results.rows.length == 0){
                     this.setState({rank: 'N/A'})
                   }else{
                     for (let i = 0; i < results.rows.length; ++i) {
+                      console.log("Umair");
                       console.log(results.rows._array[i].user_id)
                       if(this.state.username == results.rows._array[i].user_id){
                           this.setState({rank: i+1})
                       }else{
-                        this.setState({rank: 'N/A'})
+                        this.setState({rank: 'N/AA'})
                       }
                      }
                 }
@@ -178,16 +179,17 @@ export default class LoginScreen extends Component {
     return (
       <Wallpaper>
         <View style={styles.logo}>
-          <Logo heading="Leaderboards: " />
+          <Logo heading="Your Score: " />
         </View>
         <View style={styles.displayText}>
           <Text style={styles.display}> Username: {this.state.username}</Text>
           <Text style={styles.display}> Rank: {this.state.rank}</Text>
           <Text style={styles.display}> Total Points: {this.state.totalPoints}</Text>
-          <Text style={styles.display}> Total Points: {this.state.averagePoints}</Text>
+          <Text style={styles.display}> Average Points: {this.state.averagePoints}</Text>
         </View>
         <View style={styles.button}>
           <ButtonSubmit label="Back To Main Menu" moveTo="MainScreen" username={this.state.username} />
+          <ButtonSubmit label="Back To View Score" moveTo="GameTypeScreenLeaderboard" username={this.state.username} />
         </View>
       </Wallpaper>
     );
@@ -211,7 +213,7 @@ const styles = StyleSheet.create({
     flex: 3,
     alignItems: 'center',
     justifyContent: 'flex-start',
-    top: 200
+    top: 100
     //backgroundColor: 'orange'
   },
   input: {
